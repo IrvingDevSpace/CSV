@@ -15,7 +15,7 @@ namespace CSV
             AddAccountingInfo addAccountingInfo = new AddAccountingInfo
             {
                 Time = DateTime.Now.ToString("yyyy-MM-dd"),
-                Value = "135153",
+                Value = DateTime.Now.ToString("hhmmssfff"),
                 Type = "飲食",
                 Purpose = "午餐",
                 Who = "自己",
@@ -24,8 +24,9 @@ namespace CSV
                 ImagePath2 = "C:\\Users\\IRVING\\Program Course\\Code\\Accounting\\FileServer\\2aa44ba5-0150-4aaa-8d88-db035c55a652_imgPath2.png"
             };
 
-            CSVHelper.Write($@"C:\Users\IRVING\Desktop\Files\{fileServerPath}Data.csv", addAccountingInfo);
-          //  List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>($"{fileServerPath}Data.csv");
+            CSVHelper.Write($@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv", addAccountingInfo, true);
+            //List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>($"{fileServerPath}Data.csv");
+            List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>(@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv");
         }
     }
 }
