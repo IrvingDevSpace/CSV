@@ -24,7 +24,7 @@ namespace CSV
                 ImagePath2 = "C:\\Users\\IRVING\\Program Course\\Code\\Accounting\\FileServer\\2aa44ba5-0150-4aaa-8d88-db035c55a652_imgPath2.png"
             };
 
-            CSVHelper.Write($@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv", addAccountingInfo, true);
+            CSVHelper.Write($@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv", addAccountingInfo);
             //List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>($"{fileServerPath}Data.csv");
             List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>(@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv");
         }

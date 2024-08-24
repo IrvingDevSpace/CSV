@@ -28,6 +28,7 @@ namespace CSV
             switch (headerTag)
             {
                 case HeaderTag.FileNotExist:
+                    break;
                 case HeaderTag.HeaderInValid:
                     WriteHeaderAndContent(filePath, data, csvReadContent);
                     break;
@@ -103,7 +104,7 @@ namespace CSV
             }
             writeContent += headerName + Environment.NewLine;
 
-            for (int i = 1; i < csvReadContent.ContentLines.Count; i++)
+            for (int i = 0; i < csvReadContent.ContentLines.Count; i++)
                 writeContent += csvReadContent.ContentLines[i] + Environment.NewLine;
 
             using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))

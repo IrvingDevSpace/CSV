@@ -12,11 +12,10 @@ namespace CSV
 {
     internal class CSVHelper
     {
-        public static void Write<T>(String filePath, T data, bool shouldAddHeader)
+        public static void Write<T>(String filePath, T data)
         {
             FilePathWriteCheck(filePath);
-            if (shouldAddHeader)
-                CSVHeader.AddHeader(filePath, data);
+            CSVHeader.AddHeader(filePath, data);
             PropertyInfo[] propertyInfos = data.GetType().GetProperties();
             String content = "";
             for (int i = 0; i < propertyInfos.Length; i++)
