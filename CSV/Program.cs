@@ -1,9 +1,6 @@
 ﻿using CSV.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSV
 {
@@ -15,9 +12,9 @@ namespace CSV
             AddAccountingInfo addAccountingInfo = new AddAccountingInfo
             {
                 Time = DateTime.Now.ToString("yyyy-MM-dd"),
-                Value = DateTime.Now.ToString("hhmmssfff"),
+                Amount = DateTime.Now.ToString("hhmmssff"),
                 Type = "飲食",
-                Purpose = "午餐",
+                Purpose = "早餐",
                 Who = "自己",
                 Payment = "現金",
                 ImagePath1 = "C:\\Users\\IRVING\\Program Course\\Code\\Accounting\\FileServer\\86cee891-7003-4f8e-8204-a8a4ccf72c45_imgPath1.png",

@@ -1,40 +1,33 @@
-﻿using CSV.Enums;
+﻿using CSV.HeaderStateMachine;
+using CSV.Model.HeaderStateMachine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Contexts;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSV
 {
     public class CSVHeader
     {
-        private class CSVReadFileContent
-        {
-            public bool FileExist { get; set; } = true;
-            public List<String> ContentLines { get; set; } = new List<String>();
-            public List<String> HeaderNames { get; set; } = new List<String>();
-        }
-
         public static void AddHeader<T>(String filePath, T data)
         {
             CSVReadFileContent csvReadContent = GetCSVReadFileContent(filePath);
-            HeaderTag headerTag = CheckHeaderStatus(data, csvReadContent);
-            switch (headerTag)
+            AHeaderState<T> headerState = GetHeaderStatus<T>(csvReadContent);
+            HeaderStateInfo<T> headerStateInfo = new HeaderStateInfo<T>
             {
-                case HeaderTag.FileNotExist:
-                    break;
-                case HeaderTag.HeaderInValid:
-                    WriteHeaderAndContent(filePath, data, csvReadContent);
-                    break;
-                case HeaderTag.HeaderValid:
-                    break;
-            }
+                FilePath = filePath,
+                Data = data,
+                CSVReadContent = csvReadContent
+            };
+            CheckHeaderStatus<T> checkHeaderStatus = new CheckHeaderStatus<T>(headerState, headerStateInfo);
+            while (!checkHeaderStatus.IsEndState)
+                checkHeaderStatus.Check();
+
+
+            // https://www.youtube.com/watch?v=IdOv257xuP8&t=310s
         }
 
         private static CSVReadFileContent GetCSVReadFileContent(String filePath)
@@ -54,13 +47,11 @@ namespace CSV
             return csvReadContent;
         }
 
-        private static HeaderTag CheckHeaderStatus<T>(T data, CSVReadFileContent csvReadContent)
+        private static AHeaderState<T> GetHeaderStatus<T>(CSVReadFileContent csvReadContent)
         {
             if (!csvReadContent.FileExist)
-                return HeaderTag.FileNotExist;
-            if (IsValidHeaderName(data, csvReadContent))
-                return HeaderTag.HeaderValid;
-            return HeaderTag.HeaderInValid;
+                return new FileNotExistState<T>();
+            return new FileExistState<T>();
         }
 
         private static bool IsValidHeaderName<T>(T data, CSVReadFileContent csvReadContent)
