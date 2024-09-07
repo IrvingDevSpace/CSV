@@ -1,9 +1,6 @@
 ﻿using CSV.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSV
 {
@@ -24,9 +21,9 @@ namespace CSV
                 ImagePath2 = "C:\\Users\\IRVING\\Program Course\\Code\\Accounting\\FileServer\\2aa44ba5-0150-4aaa-8d88-db035c55a652_imgPath2.png"
             };
 
-            CSVHelper.Write($@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv", addAccountingInfo);
+            //CSVHelper.Write($@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv", addAccountingInfo);
             //List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>($"{fileServerPath}Data.csv");
-            List<AddAccountingInfo> list = CSVHelper.Read<AddAccountingInfo>(@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv");
+            List<TestInfo> list = CSVHelper.Read<TestInfo>(@"C:\Users\IRVING\Desktop\Filesss\Dazataa.csv");
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using CSV.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSV
 {
@@ -32,18 +30,36 @@ namespace CSV
         public static List<T> Read<T>(String filePath) where T : class, new()
         {
             FilePathReadCheck(filePath);
+            CSVHeader.ReadHeader(filePath);
             List<T> list = new List<T>();
             using (var reader = new StreamReader(filePath))
             {
+                int count = 0;
                 while (!reader.EndOfStream)
                 {
                     T t = new T();
                     String content = reader.ReadLine();
-                    List<String> contents = content.Split(',').ToList();
-                    PropertyInfo[] propertyInfos = t.GetType().GetProperties();
-                    for (int i = 0; i < propertyInfos.Length; i++)
-                        propertyInfos[i].SetValue(t, contents[i]);
-                    list.Add(t);
+                    if (count > 0)
+                    {
+                        List<String> contents = content.Split(',').ToList();
+                        PropertyInfo[] propertyInfos = t.GetType().GetProperties();
+                        for (int i = 0; i < propertyInfos.Length; i++)
+                        {
+                            String displayName = propertyInfos[i].GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
+                            if (displayName != null)
+                            {
+                                if (CSVHeader.HeaderNameIndexDic.TryGetValue(displayName, out int index))
+                                    propertyInfos[i].SetValue(t, contents[index]);
+                            }
+                            else
+                            {
+                                if (CSVHeader.HeaderNameIndexDic.TryGetValue(propertyInfos[i].Name, out int index))
+                                    propertyInfos[i].SetValue(t, contents[index]);
+                            }
+                        }
+                        list.Add(t);
+                    }
+                    count++;
                 }
             }
             return list;

@@ -5,10 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Contexts;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSV
 {
@@ -20,6 +17,8 @@ namespace CSV
             public List<String> ContentLines { get; set; } = new List<String>();
             public List<String> HeaderNames { get; set; } = new List<String>();
         }
+
+        public static Dictionary<String, int> HeaderNameIndexDic { get; set; }
 
         public static void AddHeader<T>(String filePath, T data)
         {
@@ -37,6 +36,11 @@ namespace CSV
             }
         }
 
+        public static void ReadHeader(String filePath)
+        {
+            _ = GetCSVReadFileContent(filePath);
+        }
+
         private static CSVReadFileContent GetCSVReadFileContent(String filePath)
         {
             CSVReadFileContent csvReadContent = new CSVReadFileContent();
@@ -50,6 +54,9 @@ namespace CSV
                 String fileContent = reader.ReadToEnd();
                 csvReadContent.ContentLines = fileContent.Split(new String[] { "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim('\r')).ToList();//\r\n
                 csvReadContent.HeaderNames = csvReadContent.ContentLines.FirstOrDefault()?.Split(',').ToList() ?? new List<String>();
+                HeaderNameIndexDic = new Dictionary<String, int>();
+                for (int i = 0; i < csvReadContent.HeaderNames.Count; i++)
+                    HeaderNameIndexDic.Add(csvReadContent.HeaderNames[i], i);
             }
             return csvReadContent;
         }
