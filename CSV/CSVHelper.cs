@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CSV
 {
-    internal class CSVHelper
+    public class CSVHelper
     {
         public static void Write<T>(String filePath, T data)
         {

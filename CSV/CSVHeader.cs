@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CSV
 {
-    public class CSVHeader
+    internal class CSVHeader
     {
         private class CSVReadFileContent
         {
@@ -27,7 +27,6 @@ namespace CSV
             switch (headerTag)
             {
                 case HeaderTag.FileNotExist:
-                    break;
                 case HeaderTag.HeaderInValid:
                     WriteHeaderAndContent(filePath, data, csvReadContent);
                     break;
