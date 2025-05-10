@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace CSV.Model
+namespace CSV.Benchmark.Model
 {
     internal class AddAccountingInfo
     {

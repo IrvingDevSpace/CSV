@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSV", "CSV\CSV.csproj", "{F6F413C2-4BF8-4AF5-8E36-6A5AD5DB7639}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSV.Benchmark", "CSV.Benchmark\CSV.Benchmark.csproj", "{28807FC2-3653-4B82-9C41-E5275024965B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F6F413C2-4BF8-4AF5-8E36-6A5AD5DB7639}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F413C2-4BF8-4AF5-8E36-6A5AD5DB7639}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F413C2-4BF8-4AF5-8E36-6A5AD5DB7639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28807FC2-3653-4B82-9C41-E5275024965B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28807FC2-3653-4B82-9C41-E5275024965B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28807FC2-3653-4B82-9C41-E5275024965B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28807FC2-3653-4B82-9C41-E5275024965B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
