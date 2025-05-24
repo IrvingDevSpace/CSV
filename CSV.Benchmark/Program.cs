@@ -7,10 +7,7 @@ namespace CSV.Benchmark
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<Read_VS_OptimizeRead>();
-
-            // object obj = "123"
-            // obj.GetType().Name
+            var summary = BenchmarkRunner.Run<Write_VS_OptimizeWrite>();
         }
     }
 }

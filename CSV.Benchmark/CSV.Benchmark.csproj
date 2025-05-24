@@ -166,6 +166,7 @@
     <Compile Include="Model\Info.cs" />
     <Compile Include="Model\Read_VS_OptimizeRead2.cs" />
     <Compile Include="Model\Read_VS_OptimizeRead.cs" />
+    <Compile Include="Model\Write_VS_OptimizeWrite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
